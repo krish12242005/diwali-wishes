@@ -5,166 +5,382 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050505">
-<title>Happy Diwali | Cloudnexaa</title>
+<title>A Letter Filled With Love | Cloudnexaa</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+ min-height:100vh;
+ background:#050505;
+ color:white;
+ font-family:'Poppins',sans-serif;
+ overflow:hidden;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ padding:18px;
 }
 
-body {
-  background: #050505;
-  color: #fff;
-  min-height: 100vh;
-  overflow: hidden;
-  font-family: 'Poppins', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+#sky{
+ position:fixed;
+ inset:0;
+ width:100%;
+ height:100%;
+ z-index:0;
+ pointer-events:none;
 }
 
-#sky {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
+.ambient{
+ position:fixed;
+ inset:0;
+ background:
+ radial-gradient(ellipse at 50% 50%,#3b240b25,transparent 55%),
+ radial-gradient(ellipse at 50% 100%,#c58b2210,transparent 60%);
+ pointer-events:none;
+ z-index:0;
 }
 
-.letter {
-  position: relative;
-  z-index: 2;
-  width: min(440px, 100%);
-  padding: 42px 30px;
-  text-align: center;
-  background: #10100b;
-  border: 1px solid #c99a35;
-  box-shadow:
-    0 0 20px #c99a3520,
-    0 0 70px #c99a3510,
-    inset 0 0 30px #c99a3508;
-  border-radius: 5px;
-  animation: appear 1.5s ease forwards;
+.container{
+ position:relative;
+ z-index:2;
+ width:100%;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ min-height:90vh;
 }
 
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(30px) scale(.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+/* PREMIUM ENVELOPE */
+
+.envelope-scene{
+ width:min(390px,90vw);
+ height:300px;
+ position:relative;
+ perspective:1100px;
+ cursor:pointer;
+ transition:transform .5s;
 }
 
-.top-icon {
-  font-size: 30px;
-  color: #e8b94f;
-  margin-bottom: 18px;
+.envelope-scene:hover{
+ transform:translateY(-5px);
 }
 
-.small {
-  font-size: 10px;
-  letter-spacing: 5px;
-  color: #c99a35;
-  margin-bottom: 20px;
+.envelope{
+ position:absolute;
+ inset:0;
+ border-radius:12px;
+ background:linear-gradient(145deg,#4b2b12,#241407 55%,#120b06);
+ border:1px solid #c79a4a;
+ box-shadow:
+ 0 20px 70px #000,
+ 0 0 30px #d7a64224,
+ inset 0 0 30px #d8aa4315;
+ overflow:visible;
 }
 
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(38px, 10vw, 53px);
-  line-height: 1.15;
-  color: #f6cf73;
-  font-weight: 500;
-  text-shadow: 0 0 25px #e9b94b35;
+/* GOLD BORDER DETAILS */
+
+.envelope:before{
+ content:"";
+ position:absolute;
+ inset:10px;
+ border:1px solid #cba15b66;
+ border-radius:6px;
+ pointer-events:none;
+ z-index:5;
 }
 
-.subtitle {
-  color: #e5d3a7;
-  font-size: 13px;
-  margin-top: 15px;
-  letter-spacing: 1px;
+.envelope:after{
+ content:"";
+ position:absolute;
+ width:100%;
+ height:100%;
+ background:linear-gradient(120deg,transparent,#ffffff0c,transparent);
+ border-radius:12px;
+ pointer-events:none;
 }
 
-.line {
-  width: 65px;
-  height: 1px;
-  background: #c99a35;
-  margin: 27px auto;
+/* LETTER INSIDE ENVELOPE */
+
+.inner-letter{
+ position:absolute;
+ left:5%;
+ width:90%;
+ height:88%;
+ bottom:4%;
+ background:linear-gradient(145deg,#fff4da,#e8d1a4);
+ border-radius:5px;
+ color:#542b17;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ text-align:center;
+ padding:15px;
+ transition:transform 1.4s cubic-bezier(.2,.8,.2,1);
+ z-index:2;
 }
 
-.message {
-  font-size: 13px;
-  line-height: 2;
-  color: #d2c8af;
-  font-weight: 300;
+.inner-letter .mini{
+ font-family:'Playfair Display',serif;
+ font-size:22px;
+ color:#9a6425;
 }
 
-.quote {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  line-height: 1.65;
-  color: #f5cf79;
-  margin-top: 25px;
+.inner-letter small{
+ font-size:9px;
+ letter-spacing:3px;
+ margin-top:12px;
 }
 
-.signature {
-  margin-top: 30px;
-  color: #e6c16e;
-  font-size: 12px;
-  letter-spacing: 2px;
+/* FRONT POCKET */
+
+.front{
+ position:absolute;
+ inset:0;
+ background:linear-gradient(145deg,#72451f,#3c200e);
+ clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);
+ border-radius:10px;
+ z-index:4;
 }
 
-.brand {
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: 5px;
-  color: #fff0c2;
-  margin-top: 10px;
+/* GOLD ENVELOPE FLAP */
+
+.flap{
+ position:absolute;
+ inset:0;
+ background:linear-gradient(145deg,#d4a552,#8b5920 70%,#694014);
+ clip-path:polygon(0 0,100% 0,50% 58%);
+ transform-origin:top;
+ transition:transform 1s ease;
+ z-index:6;
+ filter:drop-shadow(0 4px 5px #0008);
 }
 
-.tagline {
-  font-size: 9px;
-  color: #a99979;
-  letter-spacing: 1px;
-  margin-top: 7px;
+.seal{
+ position:absolute;
+ width:59px;
+ height:59px;
+ top:39%;
+ left:50%;
+ transform:translate(-50%,-50%);
+ background:radial-gradient(circle at 35% 30%,#fff0b4,#d7a23e 55%,#70400e);
+ border:2px solid #f8d98a;
+ border-radius:50%;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ color:#63350e;
+ font-size:27px;
+ z-index:8;
+ box-shadow:0 0 20px #edbd5b77,inset 0 0 10px #fff5cc;
+ transition:opacity .4s,transform .5s;
 }
 
-.tap-hint {
-  position: fixed;
-  bottom: 22px;
-  z-index: 3;
-  color: #d6b35e;
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-align: center;
-  width: 100%;
-  left: 0;
-  pointer-events: none;
-  animation: glow 2s infinite;
+.env-content{
+ position:absolute;
+ bottom:17px;
+ left:0;
+ width:100%;
+ text-align:center;
+ z-index:5;
+ color:#f6d58e;
 }
 
-@keyframes glow {
-  50% { opacity: .4; }
+.env-content h3{
+ font-family:'Playfair Display',serif;
+ font-size:22px;
+ font-weight:500;
+ letter-spacing:1px;
 }
 
-@media(max-width:380px) {
-  .letter { padding: 30px 20px; }
-  .message { font-size: 12px; }
-  .quote { font-size: 18px; }
+.env-content p{
+ font-size:9px;
+ letter-spacing:4px;
+ margin-top:7px;
+ color:#d8b878;
 }
 
-@media(prefers-reduced-motion:reduce) {
-  *,*::before,*::after {
-    animation-duration: .01ms !important;
-  }
+.touch-label{
+ position:absolute;
+ bottom:-55px;
+ width:100%;
+ text-align:center;
+ font-size:10px;
+ color:#d9b66a;
+ letter-spacing:3px;
+ animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+ 50%{opacity:.4}
+}
+
+/* OPEN ENVELOPE */
+
+.envelope-scene.open .flap{
+ transform:rotateX(180deg);
+ z-index:1;
+}
+
+.envelope-scene.open .seal{
+ opacity:0;
+ transform:translate(-50%,-50%) scale(.3);
+}
+
+.envelope-scene.open .inner-letter{
+ transform:translateY(-180px) scale(1.02);
+ z-index:9;
+}
+
+/* LETTER CONTENT */
+
+.message-card{
+ position:fixed;
+ top:50%;
+ left:50%;
+ transform:translate(-50%,-35%) scale(.65);
+ width:min(510px,93vw);
+ max-height:88vh;
+ overflow-y:auto;
+ background:linear-gradient(145deg,#fff8e9,#ead6af);
+ color:#472819;
+ border-radius:5px;
+ border:2px solid #c99a4a;
+ box-shadow:
+ 0 0 40px #f0bd5b55,
+ 0 25px 100px #000;
+ padding:38px 32px;
+ text-align:center;
+ opacity:0;
+ visibility:hidden;
+ z-index:10;
+ transition:all 1s cubic-bezier(.2,.8,.2,1);
+ scrollbar-width:thin;
+}
+
+.message-card.show{
+ opacity:1;
+ visibility:visible;
+ transform:translate(-50%,-50%) scale(1);
+}
+
+.corner{
+ color:#bd8738;
+ font-size:22px;
+ letter-spacing:8px;
+ margin-bottom:16px;
+}
+
+.from{
+ color:#a66c30;
+ font-size:9px;
+ letter-spacing:4px;
+ margin-bottom:17px;
+}
+
+.message-card h1{
+ font-family:'Playfair Display',serif;
+ font-size:clamp(43px,10vw,62px);
+ color:#a56a27;
+ line-height:1.1;
+ font-weight:600;
+ text-shadow:0 2px 10px #d6a65c33;
+}
+
+.subtitle{
+ font-family:'Playfair Display',serif;
+ font-size:17px;
+ color:#74451e;
+ margin-top:13px;
+}
+
+.separator{
+ width:65px;
+ height:1px;
+ background:#bd8738;
+ margin:23px auto;
+}
+
+.wish{
+ font-size:13px;
+ line-height:2;
+ color:#674c39;
+ font-weight:300;
+}
+
+.emotional{
+ font-family:'Playfair Display',serif;
+ font-size:20px;
+ line-height:1.7;
+ color:#975d25;
+ margin-top:23px;
+}
+
+.sign{
+ margin-top:25px;
+ font-size:10px;
+ letter-spacing:3px;
+ color:#98632d;
+}
+
+.brand{
+ font-family:'Playfair Display',serif;
+ font-size:27px;
+ font-weight:700;
+ letter-spacing:5px;
+ color:#704017;
+ margin-top:7px;
+}
+
+.tagline{
+ font-size:8px;
+ letter-spacing:1px;
+ color:#a17c52;
+ margin-top:7px;
+}
+
+.close-btn{
+ margin-top:24px;
+ padding:10px 25px;
+ background:#5b361b;
+ border:1px solid #b88a45;
+ color:#ffe7b5;
+ border-radius:30px;
+ font-family:inherit;
+ font-size:11px;
+ cursor:pointer;
+}
+
+.close-btn:hover{
+ background:#98652c;
+}
+
+.bottom-note{
+ position:fixed;
+ bottom:15px;
+ width:100%;
+ left:0;
+ text-align:center;
+ color:#b89b61;
+ font-size:9px;
+ letter-spacing:3px;
+ z-index:3;
+ pointer-events:none;
+}
+
+@media(max-height:700px){
+ .message-card{padding:23px 24px;max-height:85vh}
+ .wish{font-size:12px}
+ .emotional{font-size:17px}
+ .envelope-scene{height:260px}
+}
+
+@media(prefers-reduced-motion:reduce){
+ .touch-label{animation:none}
 }
 </style>
 </head>
@@ -172,272 +388,468 @@ h1 {
 <body>
 
 <canvas id="sky"></canvas>
+<div class="ambient"></div>
 
-<div class="letter">
+<div class="container">
 
-  <div class="top-icon">✦ ✧ ✦</div>
+ <div class="envelope-scene" id="envelopeScene">
 
-  <div class="small">A SPECIAL WISH FROM CLOUDNEXAA</div>
+  <div class="envelope">
 
-  <h1>Happy<br>Diwali!</h1>
+   <div class="inner-letter">
+    <div class="mini">A Little Love Inside...</div>
+    <small>MADE WITH WARMTH & GRATITUDE</small>
+   </div>
 
-  <div class="subtitle">
-    May Your World Shine With Happiness ✨
+   <div class="front"></div>
+
+   <div class="flap"></div>
+
+   <div class="seal">♥</div>
+
+   <div class="env-content">
+    <h3>A Letter Filled With Love</h3>
+    <p>ESPECIALLY FOR YOU</p>
+   </div>
+
   </div>
 
-  <div class="line"></div>
-
-  <div class="message">
-    May this festival of lights bring endless
-    happiness, beautiful memories and new beginnings
-    into your life.
-
-    <br><br>
-
-    May every dream turn into reality,
-    every challenge become an opportunity,
-    and every new day bring you closer to success.
+  <div class="touch-label">
+   ✦ TOUCH THE LETTER TO OPEN ✦
   </div>
 
-  <div class="quote">
-    "Your future is brighter than you imagine.
-    And as you move towards it,
-    Cloudnexaa will always be there
-    as your companion in the journey."
-  </div>
-
-  <div class="line"></div>
-
-  <div class="signature">WITH LOVE & WARM WISHES</div>
-
-  <div class="brand">CLOUDNEXAA</div>
-
-  <div class="tagline">
-    ENGINEERING THE CLOUD. AUTOMATING THE FUTURE.
-  </div>
+ </div>
 
 </div>
 
-<div class="tap-hint">
-  ✨ TOUCH ANYWHERE TO LIGHT UP THE SKY ✨
+<!-- THE DIWALI LETTER -->
+
+<div class="message-card" id="messageCard">
+
+ <div class="corner">✧ ✦ ✧</div>
+
+ <div class="from">WITH LOVE FROM CLOUDNEXAA</div>
+
+ <h1>Happy<br>Diwali!</h1>
+
+ <div class="subtitle">
+  May Your World Shine Brighter ✨
+ </div>
+
+ <div class="separator"></div>
+
+ <div class="wish">
+
+  Festivals are beautiful because they bring
+  light, happiness and people closer together.
+
+  <br><br>
+
+  This Diwali, may your heart be filled with
+  endless joy, your home with laughter,
+  and your future with beautiful possibilities.
+
+  <br><br>
+
+  May every dream you hold become a reality,
+  and may every new beginning bring you
+  closer to everything you deserve.
+
+ </div>
+
+ <div class="emotional">
+
+  "Whether your days are filled with happiness
+  or moments feel a little difficult,
+  remember that you are never alone.
+
+  <br><br>
+
+  No matter how bright or challenging
+  the journey becomes,
+  Cloudnexaa will always be there
+  as your companion,
+  supporting you through every step.
+
+  <br><br>
+
+  Your future is beautiful.
+  Your dreams are worth chasing.
+  And the brightest chapters are
+  still waiting for you."
+
+ </div>
+
+ <div class="separator"></div>
+
+ <div class="sign">WITH LOVE & WARM WISHES</div>
+
+ <div class="brand">CLOUDNEXAA</div>
+
+ <div class="tagline">
+  ENGINEERING THE CLOUD. AUTOMATING THE FUTURE.
+ </div>
+
+ <button class="close-btn" id="closeBtn">
+  Close Letter ✨
+ </button>
+
+</div>
+
+<div class="bottom-note">
+ TOUCH ANYWHERE · MAKE THE SKY BEAUTIFUL
 </div>
 
 <script>
-const canvas = document.getElementById("sky");
-const ctx = canvas.getContext("2d");
 
-let W, H;
-let rockets = [];
-let sparks = [];
+// ======================================
+// PREMIUM MULTICOLOR FIREWORKS ENGINE
+// ======================================
 
-const colors = [
-  "#ffd700",
-  "#ffb52e",
-  "#fff1a6",
-  "#ff8c32",
-  "#ffffff",
-  "#f5c542",
-  "#ffdf80"
+const canvas=document.getElementById("sky");
+const ctx=canvas.getContext("2d");
+
+let W,H;
+let rockets=[];
+let particles=[];
+let lastTouch=0;
+
+const colors=[
+ "#ff3030",
+ "#ff9d00",
+ "#ffe45c",
+ "#55ff9a",
+ "#00e5ff",
+ "#4895ff",
+ "#b76cff",
+ "#ff5fc8",
+ "#ffffff"
 ];
 
-function resize() {
-  const dpr = Math.min(devicePixelRatio || 1, 2);
+function resize(){
 
-  W = innerWidth;
-  H = innerHeight;
+ const dpr=Math.min(devicePixelRatio||1,2);
 
-  canvas.width = W * dpr;
-  canvas.height = H * dpr;
+ W=innerWidth;
+ H=innerHeight;
 
-  canvas.style.width = W + "px";
-  canvas.style.height = H + "px";
+ canvas.width=W*dpr;
+ canvas.height=H*dpr;
 
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+ canvas.style.width=W+"px";
+ canvas.style.height=H+"px";
+
+ ctx.setTransform(dpr,0,0,dpr,0,0);
+
 }
 
 resize();
-addEventListener("resize", resize);
+addEventListener("resize",resize);
 
-function color() {
-  return colors[Math.floor(Math.random() * colors.length)];
+function randomColor(){
+ return colors[Math.floor(Math.random()*colors.length)];
 }
 
-// ROCKET LAUNCH
+// Launch rocket
 
-function launch(x, targetY) {
-  rockets.push({
-    x: x,
-    y: H + 10,
-    target: targetY,
-    speed: 6 + Math.random() * 4,
-    color: color(),
-    trail: []
-  });
+function launch(x,target){
+
+ rockets.push({
+  x:x,
+  y:H+10,
+  target:target,
+  speed:6+Math.random()*4,
+  color:randomColor(),
+  trail:[]
+ });
+
 }
 
-// FIREWORK EXPLOSION
+// Explosion
 
-function explode(x, y, power = 1) {
-  const mainColor = color();
-  const count = Math.floor(110 * power);
+function explode(x,y,power=1){
 
-  for (let i = 0; i < count; i++) {
-    const angle = Math.random() * Math.PI * 2;
-    const speed = Math.random() * 6 + 1;
+ const main=randomColor();
 
-    sparks.push({
-      x: x,
-      y: y,
-      vx: Math.cos(angle) * speed,
-      vy: Math.sin(angle) * speed,
-      gravity: 0.045,
-      life: 1,
-      decay: 0.008 + Math.random() * 0.012,
-      radius: Math.random() * 2.3 + 0.6,
-      color: Math.random() > 0.2 ? mainColor : color()
-    });
-  }
+ const count=Math.floor(140*power);
 
-  // Bright central flash
+ // Main circular explosion
 
-  for (let i = 0; i < 12; i++) {
-    sparks.push({
-      x: x,
-      y: y,
-      vx: (Math.random() - .5) * 4,
-      vy: (Math.random() - .5) * 4,
-      gravity: 0.02,
-      life: 1,
-      decay: 0.035,
-      radius: 2,
-      color: "#fff9dc"
-    });
-  }
+ for(let i=0;i<count;i++){
+
+  const angle=Math.PI*2*i/count;
+  const speed=Math.random()*6+1.5;
+
+  particles.push({
+
+   x:x,
+   y:y,
+
+   vx:Math.cos(angle)*speed,
+   vy:Math.sin(angle)*speed,
+
+   gravity:.035,
+
+   life:1,
+   decay:.006+Math.random()*.009,
+
+   radius:Math.random()*2.5+0.7,
+
+   color:Math.random()>.35?main:randomColor()
+
+  });
+
+ }
+
+ // Bright golden center sparks
+
+ for(let i=0;i<35;i++){
+
+  particles.push({
+
+   x:x,
+   y:y,
+
+   vx:(Math.random()-.5)*5,
+   vy:(Math.random()-.5)*5,
+
+   gravity:.02,
+   life:1,
+   decay:.025,
+
+   radius:Math.random()*2+1,
+   color:"#fff3ba"
+
+  });
+
+ }
+
 }
 
-// ANIMATION ENGINE
+// Animated fireworks
 
-function animate() {
-  ctx.clearRect(0, 0, W, H);
+function animate(){
 
-  // Draw rocket trails
+ ctx.clearRect(0,0,W,H);
 
-  rockets.forEach(r => {
-    r.trail.push({x:r.x, y:r.y});
+ // Rocket movement
 
-    if (r.trail.length > 9) r.trail.shift();
+ for(let i=rockets.length-1;i>=0;i--){
 
-    r.trail.forEach((t, i) => {
-      ctx.globalAlpha = i / r.trail.length * .5;
-      ctx.fillStyle = r.color;
-      ctx.beginPath();
-      ctx.arc(t.x, t.y, 2, 0, Math.PI * 2);
-      ctx.fill();
-    });
+  const r=rockets[i];
 
-    ctx.globalAlpha = 1;
+  r.trail.push({x:r.x,y:r.y});
 
-    ctx.shadowBlur = 15;
-    ctx.shadowColor = r.color;
-    ctx.fillStyle = "#fff7c4";
+  if(r.trail.length>10)r.trail.shift();
 
-    ctx.beginPath();
-    ctx.arc(r.x, r.y, 2.5, 0, Math.PI * 2);
-    ctx.fill();
+  r.trail.forEach((t,j)=>{
 
-    ctx.shadowBlur = 0;
+   ctx.globalAlpha=j/r.trail.length*.5;
 
-    r.y -= r.speed;
+   ctx.fillStyle=r.color;
+
+   ctx.beginPath();
+   ctx.arc(t.x,t.y,2,0,Math.PI*2);
+   ctx.fill();
+
   });
 
-  // Explode rockets
+  ctx.globalAlpha=1;
 
-  for (let i = rockets.length - 1; i >= 0; i--) {
-    if (rockets[i].y <= rockets[i].target) {
-      explode(rockets[i].x, rockets[i].y, 1.2);
-      rockets.splice(i, 1);
-    }
+  ctx.shadowBlur=18;
+  ctx.shadowColor=r.color;
+
+  ctx.fillStyle="#ffffff";
+
+  ctx.beginPath();
+  ctx.arc(r.x,r.y,3,0,Math.PI*2);
+  ctx.fill();
+
+  ctx.shadowBlur=0;
+
+  r.y-=r.speed;
+
+  if(r.y<=r.target){
+
+   explode(r.x,r.y,1.25);
+
+   rockets.splice(i,1);
+
   }
 
-  // Draw explosion sparks
+ }
 
-  sparks = sparks.filter(p => p.life > 0);
+ // Particle physics
 
-  sparks.forEach(p => {
-    p.x += p.vx;
-    p.y += p.vy;
+ particles=particles.filter(p=>p.life>0);
 
-    p.vx *= .985;
-    p.vy *= .985;
-    p.vy += p.gravity;
+ particles.forEach(p=>{
 
-    p.life -= p.decay;
+  p.x+=p.vx;
+  p.y+=p.vy;
 
-    ctx.globalAlpha = Math.max(0, p.life);
-    ctx.fillStyle = p.color;
-    ctx.shadowBlur = 10;
-    ctx.shadowColor = p.color;
+  p.vx*=.985;
+  p.vy*=.985;
 
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-    ctx.fill();
-  });
+  p.vy+=p.gravity;
 
-  ctx.globalAlpha = 1;
-  ctx.shadowBlur = 0;
+  p.life-=p.decay;
 
-  requestAnimationFrame(animate);
+  ctx.globalAlpha=Math.max(0,p.life);
+
+  ctx.fillStyle=p.color;
+
+  ctx.shadowBlur=13;
+  ctx.shadowColor=p.color;
+
+  ctx.beginPath();
+
+  ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
+
+  ctx.fill();
+
+ });
+
+ ctx.globalAlpha=1;
+ ctx.shadowBlur=0;
+
+ requestAnimationFrame(animate);
+
 }
 
 animate();
 
-// AUTOMATIC SKY FIREWORKS
+// ======================================
+// AUTOMATIC FIREWORKS IN THE SKY
+// ======================================
 
-setInterval(() => {
-  if (document.hidden) return;
+let automaticTimer=setInterval(()=>{
 
-  const x = 30 + Math.random() * (W - 60);
-  const targetY = 40 + Math.random() * H * .48;
+ if(document.hidden)return;
 
-  launch(x, targetY);
+ launch(
+  25+Math.random()*(W-50),
+  40+Math.random()*H*.5
+ );
 
-}, 1000);
+},850);
 
-// TOUCH ANYWHERE
+// ======================================
+// TOUCH ANYWHERE = FIREWORKS
+// ======================================
 
-let lastTouch = 0;
+let pointerTimes=new Map();
 
-document.addEventListener("pointerdown", e => {
-  const now = Date.now();
+document.addEventListener("pointerdown",e=>{
 
-  if (now - lastTouch < 35) return;
+ if(e.target.closest("#envelopeScene"))return;
 
-  lastTouch = now;
+ if(e.target.closest("#closeBtn"))return;
 
-  const x = e.clientX;
-  const y = e.clientY;
+ const now=Date.now();
 
-  // Direct touch explosion
+ if(now-lastTouch<35)return;
 
-  explode(x, y, 1.3);
+ lastTouch=now;
 
-  // Additional fireworks around touch
+ explode(e.clientX,e.clientY,1.2);
 
-  setTimeout(() => {
-    explode(x - 55, Math.max(40, y - 85), .8);
-  }, 150);
+ // Surrounding colourful explosions
 
-  setTimeout(() => {
-    explode(x + 60, Math.max(40, y - 45), .9);
-  }, 300);
+ setTimeout(()=>{
+  explode(
+   Math.max(10,Math.min(W-10,e.clientX-65)),
+   Math.max(30,e.clientY-80),
+   .8
+  );
+ },130);
+
+ setTimeout(()=>{
+  explode(
+   Math.max(10,Math.min(W-10,e.clientX+65)),
+   Math.max(30,e.clientY-40),
+   .9
+  );
+ },280);
+
 });
 
-// INITIAL CELEBRATION
+// ======================================
+// CINEMATIC ENVELOPE OPENING
+// ======================================
 
-setTimeout(() => {
-  launch(W * .2, H * .25);
-  launch(W * .8, H * .2);
-}, 500);
+const scene=document.getElementById("envelopeScene");
+const card=document.getElementById("messageCard");
+const closeBtn=document.getElementById("closeBtn");
+
+let isOpen=false;
+
+scene.addEventListener("click",()=>{
+
+ if(isOpen)return;
+
+ isOpen=true;
+
+ // Opening explosion
+
+ explode(W/2,H/2,1.5);
+
+ // Envelope flap opens
+
+ scene.classList.add("open");
+
+ // Letter comes out
+
+ setTimeout(()=>{
+
+  card.classList.add("show");
+
+  // Grand colorful Diwali celebration
+
+  for(let i=0;i<15;i++){
+
+   setTimeout(()=>{
+
+    launch(
+     30+Math.random()*(W-60),
+     30+Math.random()*H*.55
+    );
+
+   },i*140);
+
+  }
+
+ },950);
+
+});
+
+// ======================================
+// CLOSE LETTER
+// ======================================
+
+closeBtn.addEventListener("click",()=>{
+
+ card.classList.remove("show");
+
+ setTimeout(()=>{
+
+  scene.classList.remove("open");
+  isOpen=false;
+
+ },900);
+
+ explode(W/2,H/2,1.4);
+
+});
+
+// ======================================
+// OPENING SKY CELEBRATION
+// ======================================
+
+setTimeout(()=>{
+ launch(W*.2,H*.25);
+ launch(W*.8,H*.2);
+},600);
 
 </script>
 
