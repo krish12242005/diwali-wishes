@@ -1,0 +1,510 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050816">
+<title>Cloudnexaa | The Beginning</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#050816;
+  --blue:#087cff;
+  --cyan:#00e5ff;
+  --purple:#9c5cff;
+  --white:#f5f8ff;
+  --muted:#9ba9c7;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--white);
+  font-family:'Outfit',sans-serif;overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;
+  background:
+  radial-gradient(ellipse at 15% 20%,#10245c 0%,transparent 45%),
+  radial-gradient(ellipse at 85% 70%,#25104d 0%,transparent 45%),
+  #050816;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+#stars{position:fixed;inset:0;z-index:-1;pointer-events:none}
+#fireworks{position:fixed;inset:0;z-index:20;pointer-events:none}
+
+nav{
+  position:fixed;top:0;width:100%;z-index:10;
+  padding:20px 7%;display:flex;justify-content:space-between;
+  align-items:center;backdrop-filter:blur(18px);
+  border-bottom:1px solid #ffffff12;
+}
+.logo{font-size:22px;font-weight:800;letter-spacing:2px}
+.logo span{color:var(--cyan)}
+.navlinks{display:flex;gap:25px;font-size:13px;color:var(--muted)}
+.navlinks a:hover{color:var(--cyan)}
+.menu{display:none;background:none;color:white;border:0;font-size:25px}
+
+section{padding:110px 8%;position:relative}
+.hero{
+ min-height:100vh;display:flex;flex-direction:column;
+ align-items:center;justify-content:center;text-align:center;
+ padding-top:130px;
+}
+.eyebrow{
+ color:var(--cyan);letter-spacing:5px;font-size:11px;
+ text-transform:uppercase;margin-bottom:25px;
+}
+h1,h2{font-family:'Space Grotesk',sans-serif}
+.hero h1{
+ font-size:clamp(43px,8vw,100px);line-height:1.03;
+ font-weight:700;max-width:1000px;
+}
+.gradient{
+ background:linear-gradient(90deg,#fff,#00cfff,#9872ff);
+ -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p{
+ color:var(--muted);font-size:17px;line-height:1.9;
+ max-width:650px;margin:28px auto;
+}
+.actions{display:flex;gap:15px;justify-content:center;flex-wrap:wrap}
+.btn{
+ padding:15px 27px;border-radius:50px;border:1px solid #ffffff30;
+ background:#ffffff0b;color:white;transition:.3s;
+}
+.btn.primary{
+ background:linear-gradient(100deg,#087cff,#773dff);
+ border:0;box-shadow:0 0 35px #087cff55;
+}
+.btn:hover{transform:translateY(-4px);box-shadow:0 0 35px #00cfff66}
+.scroll{margin-top:70px;color:#8291b2;font-size:12px;letter-spacing:3px}
+
+.section-head{text-align:center;max-width:750px;margin:0 auto 55px}
+.section-head h2{font-size:clamp(34px,5vw,58px);margin:15px 0}
+.section-head p{color:var(--muted);line-height:1.8}
+
+.glass{
+ background:linear-gradient(135deg,#ffffff0d,#ffffff04);
+ border:1px solid #ffffff18;border-radius:24px;
+ backdrop-filter:blur(18px);
+ box-shadow:0 20px 70px #0003;
+}
+.story-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.story-card{padding:30px;transition:.4s;cursor:pointer}
+.story-card:hover{
+ transform:translateY(-10px);border-color:#00d9ff88;
+ box-shadow:0 10px 50px #087cff22;
+}
+.story-card .number{font-size:38px;color:var(--cyan);font-weight:700}
+.story-card h3{font-size:21px;margin:20px 0 12px}
+.story-card p{color:var(--muted);line-height:1.8;font-size:14px}
+
+.timeline{max-width:800px;margin:auto;position:relative}
+.timeline:before{
+ content:"";position:absolute;left:20px;top:0;bottom:0;
+ width:2px;background:linear-gradient(var(--cyan),var(--purple));
+}
+.moment{padding:0 0 45px 65px;position:relative}
+.moment:before{
+ content:"";position:absolute;left:12px;top:6px;
+ width:17px;height:17px;border-radius:50%;
+ background:var(--cyan);box-shadow:0 0 20px var(--cyan);
+}
+.moment h3{font-size:23px;margin-bottom:10px}
+.moment p{color:var(--muted);line-height:1.8}
+
+.letter-wrap{max-width:850px;margin:auto;padding:15px}
+.envelope{
+ width:100%;min-height:380px;display:flex;align-items:center;
+ justify-content:center;text-align:center;padding:45px;
+ cursor:pointer;position:relative;overflow:hidden;
+}
+.envelope:after{
+ content:"✉";position:absolute;font-size:150px;
+ opacity:.035;right:25px;bottom:-20px;
+}
+.envelope h2{font-size:clamp(30px,5vw,48px);margin:20px 0}
+.envelope p{color:var(--muted);line-height:1.9}
+.letter-content{
+ display:none;padding:40px 10px;text-align:left;
+ animation:reveal 1s ease;
+}
+.letter-content.open{display:block}
+.letter-content p{
+ font-size:16px;line-height:2;color:#c4cde0;margin:17px 0;
+}
+@keyframes reveal{
+ from{opacity:0;transform:translateY(30px)}
+ to{opacity:1;transform:translateY(0)}
+}
+
+.stats{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+.stat{padding:35px;text-align:center}
+.stat strong{
+ display:block;font-size:clamp(35px,5vw,60px);
+ color:var(--cyan);font-family:'Space Grotesk';
+}
+.stat span{color:var(--muted);font-size:13px}
+
+.interactive{
+ text-align:center;padding:65px 25px;
+}
+.interactive h2{font-size:clamp(32px,5vw,55px);margin-bottom:18px}
+.interactive p{color:var(--muted);line-height:1.8;margin-bottom:30px}
+.big-burst{
+ width:130px;height:130px;border-radius:50%;
+ border:1px solid #00d9ff66;background:#00d9ff0b;
+ color:var(--cyan);font-size:45px;
+ box-shadow:0 0 50px #087cff33;
+ transition:.3s;
+}
+.big-burst:hover{transform:scale(1.12);box-shadow:0 0 70px #00d9ff88}
+
+.final{
+ min-height:90vh;display:flex;align-items:center;
+ justify-content:center;text-align:center;
+}
+.final h2{font-size:clamp(42px,8vw,90px);line-height:1.1}
+.final p{color:var(--muted);line-height:2;margin:25px auto;max-width:600px}
+footer{
+ text-align:center;padding:35px;border-top:1px solid #ffffff15;
+ color:#8291a8;font-size:12px;line-height:2;
+}
+.reveal{opacity:0;transform:translateY(45px);transition:1s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+#toast{
+ position:fixed;bottom:30px;left:50%;transform:translateX(-50%);
+ padding:13px 24px;background:#102344;border:1px solid #00d9ff66;
+ border-radius:30px;z-index:30;display:none;
+}
+@media(max-width:750px){
+ .navlinks{display:none;position:absolute;top:65px;left:0;width:100%;
+ background:#080e24;padding:25px;flex-direction:column}
+ .navlinks.show{display:flex}
+ .menu{display:block}
+ .story-grid,.stats{grid-template-columns:1fr}
+ section{padding:85px 6%}
+ .envelope{padding:25px;min-height:300px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
+ .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+
+<body>
+<canvas id="stars"></canvas>
+<canvas id="fireworks"></canvas>
+
+<nav>
+ <a href="#home" class="logo">CLOUD<span>NEXAA.</span></a>
+ <button class="menu" id="menu" aria-label="Open menu">☰</button>
+ <div class="navlinks" id="navlinks">
+  <a href="#journey">Journey</a>
+  <a href="#story">Our Story</a>
+  <a href="#letter">Open Letter</a>
+  <a href="#celebrate">Celebrate</a>
+ </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+ <div class="eyebrow">A vision. A dream. A beginning.</div>
+ <h1>We Didn't Come This Far<br>
+ <span class="gradient">Just To Stop Here.</span></h1>
+ <p>
+  Every great journey begins with a little courage.
+  Every big dream begins with a single step.
+  Welcome to the story of something bigger.
+ </p>
+ <div class="actions">
+  <a class="btn primary" href="#journey">Explore Our Journey ↗</a>
+  <button class="btn" onclick="burst(window.innerWidth/2,window.innerHeight/2,100)">Make Some Magic ✨</button>
+ </div>
+ <div class="scroll">SCROLL TO DISCOVER ↓</div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+ <div class="section-head reveal">
+  <div class="eyebrow">Beyond the ordinary</div>
+  <h2>More Than A <span class="gradient">Company.</span></h2>
+  <p>We are building more than services. We are building possibilities, relationships and a future that inspires.</p>
+ </div>
+ <div class="story-grid">
+  <article class="glass story-card reveal" onclick="burst(event.clientX||innerWidth/2,event.clientY||innerHeight/2,45)">
+   <div class="number">01</div><h3>The Vision</h3>
+   <p>A dream to make technology simpler, smarter and more accessible for businesses ready to grow.</p>
+  </article>
+  <article class="glass story-card reveal" onclick="burst(event.clientX||innerWidth/2,event.clientY||innerHeight/2,45)">
+   <div class="number">02</div><h3>The Courage</h3>
+   <p>Starting small, learning every day, embracing challenges and choosing to keep moving forward.</p>
+  </article>
+  <article class="glass story-card reveal" onclick="burst(event.clientX||innerWidth/2,event.clientY||innerHeight/2,45)">
+   <div class="number">03</div><h3>The Future</h3>
+   <p>Creating opportunities, delivering value and turning ambitious ideas into meaningful outcomes.</p>
+  </article>
+ </div>
+</section>
+
+<!-- JOURNEY -->
+<section id="journey">
+ <div class="section-head reveal">
+  <div class="eyebrow">Every chapter matters</div>
+  <h2>Our <span class="gradient">Journey.</span></h2>
+  <p>Not every step was easy. But every step had a purpose.</p>
+ </div>
+ <div class="timeline">
+  <div class="moment reveal">
+   <h3>The Dream</h3>
+   <p>It all started with an idea and the belief that something extraordinary could be built.</p>
+  </div>
+  <div class="moment reveal">
+   <h3>The First Step</h3>
+   <p>We started taking action, learning, experimenting and building the foundation.</p>
+  </div>
+  <div class="moment reveal">
+   <h3>The Challenges</h3>
+   <p>There were difficult days, unexpected turns and lessons that made us stronger.</p>
+  </div>
+  <div class="moment reveal">
+   <h3>The Beginning</h3>
+   <p>Today, we are moving forward with bigger ambitions and a stronger vision.</p>
+  </div>
+ </div>
+</section>
+
+<!-- OPEN LETTER -->
+<section id="letter">
+ <div class="section-head reveal">
+  <div class="eyebrow">A message from the heart</div>
+  <h2>An Open <span class="gradient">Letter.</span></h2>
+  <p>Some things deserve more than a regular announcement.</p>
+ </div>
+ <div class="letter-wrap">
+  <div class="glass envelope reveal">
+   <div>
+    <div style="font-size:48px">💌</div>
+    <h2>To Everyone Who Believed.</h2>
+    <p>A little message from our journey, with gratitude and hope.</p>
+    <br>
+    <button class="btn primary" id="openLetter">Open Our Letter ✨</button>
+   </div>
+  </div>
+  <div class="glass letter-content" id="letterContent">
+   <div class="eyebrow">Dear Friends, Supporters & Dreamers,</div>
+   <p>
+    There is something special about starting with a dream.
+    You don't always know where the road will lead, but you
+    decide to take the first step anyway.
+   </p>
+   <p>
+    Our journey has never been about having everything figured
+    out. It has been about believing, learning, improving and
+    showing up even when things were difficult.
+   </p>
+   <p>
+    To everyone who supported us, encouraged us, trusted us
+    and stood beside us — thank you. Every word of encouragement
+    and every opportunity has meant more than you know.
+   </p>
+   <p>
+    We know there is so much more to learn, build and achieve.
+    We are excited about the opportunities ahead and grateful
+    to everyone who is part of this journey.
+   </p>
+   <p>
+    This is not a story about reaching the finish line.
+    It is a story about having the courage to begin.
+   </p>
+   <h2 class="gradient" style="margin-top:35px">The Best Is Yet To Come.</h2>
+   <p>With gratitude,<br><strong style="color:white">JAIKRISH & THE CLOUDNEXAA TEAM</strong></p>
+   <button class="btn" onclick="burst(innerWidth/2,innerHeight/2,120)">Celebrate This Moment 🎆</button>
+  </div>
+ </div>
+</section>
+
+<!-- STATS -->
+<section>
+ <div class="section-head reveal">
+  <div class="eyebrow">The spirit behind the journey</div>
+  <h2>Built With <span class="gradient">Purpose.</span></h2>
+ </div>
+ <div class="stats">
+  <div class="glass stat reveal"><strong>∞</strong><span>Possibilities Ahead</span></div>
+  <div class="glass stat reveal"><strong>01</strong><span>Unstoppable Vision</span></div>
+  <div class="glass stat reveal"><strong>100%</strong><span>Commitment To Grow</span></div>
+ </div>
+</section>
+
+<!-- INTERACTION -->
+<section id="celebrate">
+ <div class="glass interactive reveal">
+  <div class="eyebrow">Your turn to make some magic</div>
+  <h2>Make This Moment <span class="gradient">Unforgettable.</span></h2>
+  <p>Every click creates a little celebration.<br>
+  Go ahead. Make the sky yours.</p>
+  <button class="big-burst" id="magicButton" aria-label="Launch fireworks">✦</button>
+  <p style="margin-top:25px;font-size:12px">TAP THE MAGIC BUTTON · CREATE YOUR OWN FIREWORKS</p>
+ </div>
+</section>
+
+<!-- FINAL -->
+<section class="final" id="final">
+ <div class="reveal">
+  <div class="eyebrow">This is only the beginning</div>
+  <h2>Dream Bigger.<br><span class="gradient">Build Greater.</span></h2>
+  <p>
+   The journey continues. The vision grows. The possibilities are endless.
+   And the best chapters of this story are still waiting to be written.
+  </p>
+  <button class="btn primary" onclick="grandFinale()">LET'S MAKE HISTORY 🚀</button>
+  <p style="font-size:14px;color:#00d9ff">THE BEST IS YET TO COME.</p>
+ </div>
+</section>
+
+<footer>
+ <div class="logo">CLOUD<span>NEXAA.</span></div>
+ Engineering the Cloud. Automating the Future.<br>
+ © <span id="year"></span> Cloudnexaa. Built with vision and purpose.
+</footer>
+
+<div id="toast">✨ A little magic goes a long way!</div>
+
+<script>
+// MOBILE MENU
+document.getElementById('menu').onclick=()=>{
+ document.getElementById('navlinks').classList.toggle('show');
+};
+document.querySelectorAll('.navlinks a').forEach(a=>{
+ a.onclick=()=>document.getElementById('navlinks').classList.remove('show');
+});
+
+// SCROLL REVEAL
+const observer=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  if(entry.isIntersecting){
+   entry.target.classList.add('visible');
+   observer.unobserve(entry.target);
+  }
+ });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// OPEN LETTER
+document.getElementById('openLetter').onclick=()=>{
+ const letter=document.getElementById('letterContent');
+ letter.classList.toggle('open');
+ document.getElementById('openLetter').textContent=
+ letter.classList.contains('open')?'Letter Opened ✓':'Open Our Letter ✨';
+ if(letter.classList.contains('open')){
+  letter.scrollIntoView({behavior:'smooth',block:'center'});
+  burst(innerWidth/2,innerHeight/2,65);
+ }
+};
+
+// STAR BACKGROUND
+const starCanvas=document.getElementById('stars');
+const sctx=starCanvas.getContext('2d');
+let stars=[];
+function resize(){
+ starCanvas.width=innerWidth;starCanvas.height=innerHeight;
+ fireCanvas.width=innerWidth;fireCanvas.height=innerHeight;
+ stars=Array.from({length:130},()=>({
+  x:Math.random()*innerWidth,y:Math.random()*innerHeight,
+  r:Math.random()*1.5,alpha:Math.random()
+ }));
+}
+function drawStars(){
+ sctx.clearRect(0,0,starCanvas.width,starCanvas.height);
+ stars.forEach(s=>{
+  s.alpha+=.008;
+  sctx.globalAlpha=(Math.sin(s.alpha)+1)/3+.15;
+  sctx.fillStyle='#b8eaff';
+  sctx.beginPath();sctx.arc(s.x,s.y,s.r,0,Math.PI*2);sctx.fill();
+ });
+ requestAnimationFrame(drawStars);
+}
+resize();drawStars();
+addEventListener('resize',resize);
+
+// FIREWORKS ENGINE
+const fireCanvas=document.getElementById('fireworks');
+const fctx=fireCanvas.getContext('2d');
+let particles=[];
+const colors=['#00e5ff','#087cff','#a66bff','#ffffff','#ffda75','#ff65c7'];
+
+function burst(x,y,count=65){
+ const color=colors[Math.floor(Math.random()*colors.length)];
+ for(let i=0;i<count;i++){
+  const angle=Math.random()*Math.PI*2;
+  const speed=Math.random()*6+1.5;
+  particles.push({
+   x,y,
+   vx:Math.cos(angle)*speed,
+   vy:Math.sin(angle)*speed,
+   life:1,
+   decay:Math.random()*.012+.009,
+   size:Math.random()*2.8+1,
+   color
+  });
+ }
+}
+function animateFireworks(){
+ fctx.clearRect(0,0,fireCanvas.width,fireCanvas.height);
+ particles=particles.filter(p=>p.life>0);
+ particles.forEach(p=>{
+  p.x+=p.vx;p.y+=p.vy;
+  p.vy+=.045;p.vx*=.992;
+  p.life-=p.decay;
+  fctx.globalAlpha=Math.max(0,p.life);
+  fctx.fillStyle=p.color;
+  fctx.shadowBlur=12;fctx.shadowColor=p.color;
+  fctx.beginPath();
+  fctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+  fctx.fill();
+ });
+ fctx.globalAlpha=1;fctx.shadowBlur=0;
+ requestAnimationFrame(animateFireworks);
+}
+animateFireworks();
+
+// TOUCH / CLICK ANYWHERE
+let lastTap=0;
+document.addEventListener('pointerdown',e=>{
+ if(e.target.closest('button,a,.story-card,nav'))return;
+ const now=Date.now();
+ if(now-lastTap<100)return;
+ lastTap=now;
+ burst(e.clientX,e.clientY,35);
+});
+
+// MAGIC BUTTON
+document.getElementById('magicButton').onclick=()=>{
+ burst(innerWidth/2,innerHeight/2,120);
+};
+
+// FINAL CELEBRATION
+function grandFinale(){
+ for(let i=0;i<9;i++){
+  setTimeout(()=>{
+   burst(Math.random()*innerWidth,Math.random()*innerHeight*.75,100);
+  },i*300);
+ }
+ const toast=document.getElementById('toast');
+ toast.style.display='block';
+ setTimeout(()=>toast.style.display='none',3500);
+}
+
+// SMALL AUTOMATIC FIREWORKS
+setTimeout(()=>burst(innerWidth/2,innerHeight*.35,65),1500);
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
