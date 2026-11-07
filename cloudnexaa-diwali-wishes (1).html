@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080706">
+<title>A Little Diwali Wish | Cloudnexaa</title>
+<style>
+:root{--gold:#e8bd62;--gold2:#f8e4a9;--ink:#090807;--cream:#fff8e9;--muted:#b9ad98}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 28%,#21190e 0,#0c0a08 42%,#050505 100%);color:var(--cream);font-family:Georgia,"Times New Roman",serif;overflow:hidden}
+#sky{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+.ambient{position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 45%,transparent 0 24%,rgba(0,0,0,.38) 78%);z-index:1}
+.page{position:relative;z-index:2;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:30px 16px}
+.intro{position:absolute;top:8.5%;left:0;right:0;text-align:center;padding:0 16px;transition:opacity .6s,transform .6s}
+.kicker{font:10px/1.6 Arial,sans-serif;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+.intro h1{font-size:clamp(27px,5vw,46px);font-weight:400;letter-spacing:.02em;margin:12px 0 8px;color:#f7e8c8}
+.intro p{font:12px Arial,sans-serif;letter-spacing:.12em;color:#b9a98e}
+.envelope-wrap{position:relative;width:min(340px,86vw);height:225px;margin-top:65px;perspective:1100px;cursor:pointer;filter:drop-shadow(0 22px 35px #000b);transition:transform .5s}
+.envelope-wrap:hover{transform:translateY(-5px)}
+.envelope{position:absolute;inset:0;border:1px solid #a67b37;border-radius:5px;background:linear-gradient(145deg,#e8c777,#a87932 55%,#68451e);overflow:visible}
+.envelope:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.2),transparent 35%,rgba(0,0,0,.15));z-index:2;pointer-events:none}
+.env-front{position:absolute;inset:0;background:linear-gradient(145deg,#d6ad5d,#9d6e2d);clip-path:polygon(0 0,50% 57%,100% 0,100% 100%,0 100%);z-index:3;border-radius:4px}
+.env-side{position:absolute;inset:0;background:linear-gradient(35deg,#8c6028,#d5aa58);clip-path:polygon(0 0,50% 57%,0 100%);z-index:2}
+.env-side.right{clip-path:polygon(100% 0,50% 57%,100% 100%);background:linear-gradient(325deg,#70491f,#c79a4d)}
+.flap{position:absolute;inset:0;background:linear-gradient(160deg,#f1d58f,#b78337);clip-path:polygon(0 0,100% 0,50% 58%);transform-origin:top;transition:transform 1s cubic-bezier(.2,.75,.2,1);z-index:4;backface-visibility:visible}
+.envelope-wrap.open .flap{transform:rotateX(180deg);z-index:1}
+.seal{position:absolute;z-index:5;left:50%;top:48%;transform:translate(-50%,-50%);width:47px;height:47px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#fff0b6,#b47a2b 72%);color:#583914;font-size:20px;box-shadow:0 2px 9px #51350c88;border:1px solid #f7dfa0;transition:opacity .3s}
+.envelope-wrap.open .seal{opacity:0}
+.env-label{position:absolute;z-index:6;left:0;right:0;bottom:18px;text-align:center;color:#fff0c8;text-shadow:0 1px 3px #4a2d0d;pointer-events:none}
+.env-label strong{display:block;font:10px Arial,sans-serif;letter-spacing:.25em}
+.env-label span{display:block;font:italic 16px Georgia,serif;margin:7px 0}
+.env-label small{font:8px Arial,sans-serif;letter-spacing:.2em}
+.tap-hint{position:absolute;top:calc(100% + 24px);left:0;right:0;text-align:center;font:10px Arial,sans-serif;letter-spacing:.22em;color:#c5a96f;text-transform:uppercase;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.45}}
+.letter{position:absolute;top:50%;left:50%;transform:translate(-50%,35%) scale(.94);width:min(620px,calc(100vw - 28px));max-height:min(79svh,780px);overflow:auto;opacity:0;pointer-events:none;background:linear-gradient(155deg,#fff9eb,#f4e7cb);color:#332819;border:1px solid #d2b477;border-radius:4px;padding:clamp(24px,5vw,48px);box-shadow:0 25px 90px #000c;z-index:8;transition:transform 1s cubic-bezier(.16,.8,.2,1),opacity .7s;scrollbar-color:#b38a4b #eee2c9;scrollbar-width:thin}
+.letter.show{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+.letter-top{text-align:center;border-bottom:1px solid #d7c39e;padding-bottom:22px;margin-bottom:24px}
+.letter-top .small{font:9px Arial,sans-serif;letter-spacing:.3em;color:#9c753a;text-transform:uppercase}
+.letter h2{font-size:clamp(31px,6vw,47px);font-weight:400;line-height:1.1;margin:12px 0;color:#76501f}
+.letter-top p{font:11px Arial,sans-serif;letter-spacing:.12em;color:#8c795e;margin:0}
+.letter-body{font-size:15px;line-height:1.85;color:#51432f}
+.letter-body p{margin:0 0 15px}
+.gold-line{width:55px;height:1px;background:#b68a48;margin:25px auto}
+.section-label{font:9px Arial,sans-serif;letter-spacing:.25em;text-transform:uppercase;color:#a0783c;text-align:center;margin:28px 0 18px}
+.journey{position:relative;margin:0 0 26px;padding-left:25px;border-left:1px solid #c9a96f}
+.milestone{position:relative;padding:0 0 19px 13px}
+.milestone:last-child{padding-bottom:0}
+.milestone:before{content:"";position:absolute;left:-30px;top:5px;width:9px;height:9px;border-radius:50%;background:#b68a48;box-shadow:0 0 0 4px #f4e7cb,0 0 0 5px #c9a96f}
+.milestone h3{font:10px Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#9b7136;margin:0 0 6px}
+.milestone p{font-size:13px;line-height:1.7;margin:0;color:#5e503c}
+.note{background:#efe2c5;border-left:2px solid #b58a49;padding:18px 19px;margin-top:8px}
+.note h3{text-align:center;font:10px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#946c32;margin:0 0 13px}
+.note p{font-size:13px;line-height:1.8;margin:0 0 12px}
+.note .promise{font-style:italic;color:#76501f}
+.signature{text-align:center;margin:25px 0 3px;color:#87602d}
+.signature span{display:block;font:italic 23px "Brush Script MT","Segoe Script",cursive;margin:7px 0}
+.signature small{font:9px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase}
+.close{display:block;margin:22px auto 0;border:1px solid #b58a49;background:transparent;color:#76501f;padding:10px 22px;font:9px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
+.close:hover{background:#ead8b5}
+.footer-hint{position:fixed;bottom:18px;left:0;right:0;text-align:center;color:#806a47;font:9px Arial,sans-serif;letter-spacing:.16em;z-index:2}
+@media(max-width:520px){
+ .intro{top:7%}.intro h1{font-size:30px}.envelope-wrap{margin-top:55px;height:205px}
+ .letter{max-height:84svh;padding:24px 21px}.letter-body{font-size:14px}.milestone p,.note p{font-size:12px}
+ .footer-hint{font-size:8px;bottom:10px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<canvas id="sky"></canvas><div class="ambient"></div>
+<main class="page">
+  <header class="intro" id="intro">
+    <div class="kicker">A little light. A lot of heart.</div>
+    <h1>Happy Diwali</h1>
+    <p>A LITTLE MESSAGE FROM CLOUDNEXAA</p>
+  </header>
+
+  <div class="envelope-wrap" id="envelope" role="button" tabindex="0" aria-label="Open your Diwali letter">
+    <div class="envelope">
+      <div class="env-side"></div><div class="env-side right"></div>
+      <div class="flap"></div>
+      <div class="env-front"></div>
+      <div class="seal">✦</div>
+      <div class="env-label">
+        <strong>CLOUDNEXAA PRESENTS</strong>
+        <span>A Little Message From Our Hearts</span>
+        <small>MADE WITH LOVE · SHARED WITH YOU</small>
+      </div>
+    </div>
+    <div class="tap-hint">Touch to open your letter</div>
+  </div>
+
+  <article class="letter" id="letter" aria-label="Cloudnexaa Diwali message">
+    <div class="letter-top">
+      <div class="small">A message from our hearts</div>
+      <h2>Happy Diwali</h2>
+      <p>LIGHT • HOPE • TOGETHERNESS</p>
+    </div>
+
+    <div class="letter-body">
+      <p>Dear friends, teammates, and everyone who has been part of our journey,</p>
+      <p>May this Diwali bring warmth to your homes, peace to your hearts, and new light to every dream you carry.</p>
+      <p>Every journey has bright days and difficult moments. We want you to know that you are not alone. As we continue to grow, we hope Cloudnexaa can be a companion that supports you, believes in your dreams, and moves forward with you.</p>
+      <p>Your dreams are worth chasing. Your efforts matter. And the brightest chapters are still waiting to be written.</p>
+    </div>
+
+    <div class="gold-line"></div>
+    <div class="section-label">A little look at our journey</div>
+    <div class="journey">
+      <div class="milestone">
+        <h3>The beginning · One dream</h3>
+        <p>Six months ago, we began with a simple dream and the courage to build something meaningful. We did not have every answer. We only knew that we wanted to try.</p>
+      </div>
+      <div class="milestone">
+        <h3>The struggle · Learning as we go</h3>
+        <p>There were days when we were unsure what to do next. We faced challenges, made mistakes, learned new things, and kept moving even when the road felt difficult.</p>
+      </div>
+      <div class="milestone">
+        <h3>The guidance · People who believed</h3>
+        <p>At important moments, the guidance and encouragement of Saravanan Sir and Velayudham Sir helped us find direction and confidence. We are sincerely grateful for their support and belief in us.</p>
+      </div>
+      <div class="milestone">
+        <h3>The growth · Building together</h3>
+        <p>Little by little, ideas started becoming real. Every project, experience, collaboration, and person who joined this journey taught us something valuable. We are still learning, and we are growing together.</p>
+      </div>
+      <div class="milestone">
+        <h3>The future · Just getting started</h3>
+        <p>We have so many dreams ahead of us. We want to build, create opportunities, reach bigger milestones, and make Cloudnexaa a place where the people who grow with us can achieve their own dreams too.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <h3>A small note from our heart</h3>
+      <p>This Diwali, we may not have been able to do everything we wished for the people who stood beside us. We are still at the beginning, building step by step, and honestly, we feel we couldn't make this celebration as special as you deserve.</p>
+      <p><strong>To our team and everyone who has been part of this journey — we're sorry we couldn't do more this time.</strong></p>
+      <p>But please keep one thing in your hearts: this is not where our story ends. It is where it truly begins.</p>
+      <p class="promise">By next Diwali, we hope to celebrate with bigger smiles, meaningful achievements, and something special for every one of you. We dream of seeing Cloudnexaa grow into a place where we all stand together — not as separate individuals, but as one family. A place where you can find opportunities, support, and the encouragement to reach for more.</p>
+      <p>When that day comes, we want every person who walked with us from the beginning to be right there, sharing that happiness. We may be small today, but our dreams are big. And we want to make those dreams real, together.</p>
+    </div>
+
+    <div class="signature">
+      <small>With gratitude, hope & love</small>
+      <span>With love,</span>
+      <small>The Cloudnexaa Team</small>
+    </div>
+    <div class="gold-line"></div>
+    <p style="text-align:center;font-style:italic;color:#87602d;font-size:13px;margin:0">“The next Diwali, let's celebrate everything we build together.”</p>
+    <button class="close" id="closeLetter" type="button">Close letter</button>
+  </article>
+</main>
+<div class="footer-hint" id="footerHint">TAP ANYWHERE TO LIGHT UP THE NIGHT ✦</div>
+
+<script>
+(() => {
+ const canvas=document.getElementById('sky'),ctx=canvas.getContext('2d');
+ let w=0,h=0,rockets=[],particles=[],last=0;
+ const colors=['#ffd36a','#ff8c42','#f65b72','#77d7ff','#b69cff','#fff0bd','#8ee0b5'];
+ function resize(){const d=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;canvas.width=w*d;canvas.height=h*d;ctx.setTransform(d,0,0,d,0,0)}
+ addEventListener('resize',resize);resize();
+ function launch(x=Math.random()*w,y=h+5){
+   rockets.push({x,y,vx:(Math.random()-.5)*1.8,vy:-(5+Math.random()*3),target:Math.max(70,Math.random()*h*.58),color:colors[Math.floor(Math.random()*colors.length)],trail:[]});
+ }
+ function burst(x,y,color){
+   const count=45+Math.floor(Math.random()*35);
+   for(let i=0;i<count;i++){const a=Math.PI*2*i/count, speed=1+Math.random()*4.1;
+     particles.push({x,y,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed,life:55+Math.random()*35,max:90,size:1+Math.random()*2,color:Math.random()<.24?colors[Math.floor(Math.random()*colors.length)]:color})}
+ }
+ function frame(t){
+   ctx.clearRect(0,0,w,h);
+   if(t-last>1100&&Math.random()<.55){launch();last=t}
+   rockets=rockets.filter(r=>r.y>r.target);
+   for(const r of rockets){r.trail.push({x:r.x,y:r.y});if(r.trail.length>9)r.trail.shift();r.x+=r.vx;r.y+=r.vy;r.vy+=.025;
+     ctx.beginPath();r.trail.forEach((p,i)=>{if(i===0)ctx.moveTo(p.x,p.y);else ctx.lineTo(p.x,p.y)});
+     ctx.strokeStyle=r.color;ctx.globalAlpha=.55;ctx.lineWidth=1.5;ctx.stroke();ctx.globalAlpha=1;
+     if(r.y<=r.target){burst(r.x,r.y,r.color);r.y=-100}
+   }
+   rockets=rockets.filter(r=>r.y>=0);
+   particles=particles.filter(p=>p.life>0);
+   for(const p of particles){p.x+=p.vx;p.y+=p.vy;p.vx*=.985;p.vy=p.vy*.985+.035;p.life--;
+     ctx.globalAlpha=Math.max(0,p.life/p.max);ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill()}
+   ctx.globalAlpha=1;requestAnimationFrame(frame)
+ }
+ requestAnimationFrame(frame);
+ function fireworks(x,y,n=3){for(let i=0;i<n;i++)setTimeout(()=>launch(x+(Math.random()-.5)*100,y+Math.random()*20),i*150)}
+ const envelope=document.getElementById('envelope'),letter=document.getElementById('letter'),intro=document.getElementById('intro'),footer=document.getElementById('footerHint');
+ let opened=false;
+ function openLetter(){if(opened)return;opened=true;envelope.classList.add('open');intro.style.opacity='0';intro.style.transform='translateY(-12px)';footer.style.opacity='0';fireworks(innerWidth/2,innerHeight*.52,15);
+   setTimeout(()=>{letter.classList.add('show');letter.scrollTop=0},480);
+ }
+ function closeLetter(){letter.classList.remove('show');setTimeout(()=>{envelope.classList.remove('open');intro.style.opacity='1';intro.style.transform='none';footer.style.opacity='1';opened=false},450)}
+ envelope.addEventListener('click',openLetter);
+ envelope.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLetter()}});
+ document.getElementById('closeLetter').addEventListener('click',closeLetter);
+ document.addEventListener('pointerdown',e=>{
+   if(e.target.closest('#envelope,#letter'))return;
+   fireworks(e.clientX,e.clientY,2);
+ });
+})();
+</script>
+</body>
+</html>
